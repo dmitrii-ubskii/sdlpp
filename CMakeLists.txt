@@ -8,13 +8,13 @@ endif()
 
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 
-# Only do these if this is the main project, and not if it is included through add_subdirectory
-if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-endif()
-
 project(libsdlpp VERSION 0.0.0
     DESCRIPTION "C++ wrapper for SDL2"
     LANGUAGES CXX)
+
+# Only do these if this is the main project, and not if it is included through add_subdirectory
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+endif()
 
 add_library(sdlpp STATIC
     src/font.cpp
