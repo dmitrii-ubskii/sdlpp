@@ -22,6 +22,8 @@ add_library(sdlpp STATIC
     src/video.cpp
 )
 
+target_compile_features(sdlpp PRIVATE cxx_std_20)
+
 find_package(SDL2 REQUIRED)
 
 target_include_directories(sdlpp
@@ -29,7 +31,6 @@ target_include_directories(sdlpp
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>    
         SDL2_INCLUDE_DIRS
+        "${SDL2_INCLUDE_DIRS}/SDL2"
 )
-
-target_compile_features(sdlpp PRIVATE cxx_std_20)
 
