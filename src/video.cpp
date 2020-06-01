@@ -82,6 +82,12 @@ void Renderer::copySurface(Surface const& s, Point p, Alignment align)
 
 void Renderer::copySurface(Surface const& s, Rect r, Point p, Alignment align)
 {
+	auto ss = s.getSize();
+	if (ss.w * ss.h == 0)
+	{
+		return; // no-op
+	}
+
 	SDL_Rect src = r;
 	SDL_Rect dst = Rect{p, r.s, align};
 
