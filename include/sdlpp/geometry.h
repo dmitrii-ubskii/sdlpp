@@ -1,6 +1,7 @@
 #ifndef SDLPP_GEOMETRY_H__
 #define SDLPP_GEOMETRY_H__
 
+#include <algorithm>
 #include <optional>
 
 #include <SDL2/SDL.h>
@@ -157,6 +158,36 @@ struct OptionalSize
 		return {*w, *h};
 	}
 };
+
+constexpr SDL::OptionalSize min(SDL::OptionalSize s1, SDL::OptionalSize s2)
+{
+	auto minopt = [](auto a, auto b) -> std::optional<int>
+	{
+		if (not a.has_value())
+		{
+			return b;
+		}
+		if (not b.has_value())
+		{
+			return a;
+		}
+		return std::min(*a, *b);
+	};
+	return {minopt(s1.w, s2.w), minopt(s1.h, s2.h)};
+}
+
+constexpr SDL::OptionalSize max(SDL::OptionalSize s1, SDL::OptionalSize s2)
+{
+	auto maxopt = [](auto a, auto b) -> std::optional<int>
+	{
+		if (not a.has_value() or not b.has_value())
+		{
+			return std::nullopt;
+		}
+		return std::max(*a, *b);
+	};
+	return {maxopt(s1.w, s2.w), maxopt(s1.h, s2.h)};
+}
 
 struct Rect
 {
