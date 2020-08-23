@@ -49,7 +49,7 @@ constexpr Alignment Alignment::BottomRight = {VerticalAlignment::Bottom, Horizon
 struct Point;
 struct Rect;
 
-struct Offset
+struct Vec2D
 {
 	int x;
 	int y;
@@ -67,7 +67,7 @@ struct Point
 		return {x, y};
 	}
 
-	explicit constexpr operator Offset() const noexcept
+	explicit constexpr operator Vec2D() const noexcept
 	{
 		return {x, y};
 	}
@@ -80,32 +80,32 @@ struct Point
 	constexpr bool in(Rect r) const noexcept;
 };
 
-constexpr Offset::operator Point() const noexcept
+constexpr Vec2D::operator Point() const noexcept
 {
 	return {x, y};
 }
 
-constexpr Offset operator-(Point lhs, Point rhs) noexcept
+constexpr Vec2D operator-(Point lhs, Point rhs) noexcept
 {
 	return {lhs.x - rhs.x, lhs.y - rhs.y};
 }
 
-constexpr Point operator-(Point lhs, Offset rhs) noexcept
+constexpr Point operator-(Point lhs, Vec2D rhs) noexcept
 {
 	return {lhs.x - rhs.x, lhs.y - rhs.y};
 }
 
-constexpr Point operator+(Point lhs, Offset rhs) noexcept
+constexpr Point operator+(Point lhs, Vec2D rhs) noexcept
 {
 	return {lhs.x + rhs.x, lhs.y + rhs.y};
 }
 
-constexpr Offset operator+(Offset lhs, Offset rhs) noexcept
+constexpr Vec2D operator+(Vec2D lhs, Vec2D rhs) noexcept
 {
 	return {lhs.x + rhs.x, lhs.y + rhs.y};
 }
 
-constexpr Point operator+(Offset lhs, Point rhs) noexcept
+constexpr Point operator+(Vec2D lhs, Point rhs) noexcept
 {
 	return rhs + lhs;
 }
