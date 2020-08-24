@@ -159,6 +159,16 @@ struct OptionalSize
 	}
 };
 
+constexpr SDL::Size min(SDL::Size s1, SDL::Size s2)
+{
+	return {std::min(s1.w, s2.w), std::min(s1.h, s2.h)};
+}
+
+constexpr SDL::Size max(SDL::Size s1, SDL::Size s2)
+{
+	return {std::max(s1.w, s2.w), std::max(s1.h, s2.h)};
+}
+
 constexpr SDL::OptionalSize min(SDL::OptionalSize s1, SDL::OptionalSize s2)
 {
 	auto minopt = [](auto a, auto b) -> std::optional<int>
