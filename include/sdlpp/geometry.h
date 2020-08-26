@@ -159,17 +159,27 @@ struct OptionalSize
 	}
 };
 
-constexpr SDL::Size min(SDL::Size s1, SDL::Size s2)
+constexpr Size min(Size s1, Size s2)
 {
 	return {std::min(s1.w, s2.w), std::min(s1.h, s2.h)};
 }
 
-constexpr SDL::Size max(SDL::Size s1, SDL::Size s2)
+constexpr Size max(Size s1, Size s2)
 {
 	return {std::max(s1.w, s2.w), std::max(s1.h, s2.h)};
 }
 
-constexpr SDL::OptionalSize min(SDL::OptionalSize s1, SDL::OptionalSize s2)
+constexpr Size operator+(Size s, Vec2D v)
+{
+	return {s.w + v.x, s.h + v.y};
+}
+
+constexpr Size operator-(Size s, Vec2D v)
+{
+	return {s.w - v.x, s.h - v.y};
+}
+
+constexpr OptionalSize min(OptionalSize s1, OptionalSize s2)
 {
 	auto minopt = [](auto a, auto b) -> std::optional<int>
 	{
@@ -186,7 +196,7 @@ constexpr SDL::OptionalSize min(SDL::OptionalSize s1, SDL::OptionalSize s2)
 	return {minopt(s1.w, s2.w), minopt(s1.h, s2.h)};
 }
 
-constexpr SDL::OptionalSize max(SDL::OptionalSize s1, SDL::OptionalSize s2)
+constexpr OptionalSize max(OptionalSize s1, OptionalSize s2)
 {
 	auto maxopt = [](auto a, auto b) -> std::optional<int>
 	{
