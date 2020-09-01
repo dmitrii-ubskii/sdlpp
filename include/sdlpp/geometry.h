@@ -217,6 +217,11 @@ struct Rect
 	constexpr Rect(Point p_, Size s_) noexcept: p{p_}, s{s_} {}
 	constexpr Rect(SDL_Rect r) noexcept: p{r.x, r.y}, s{r.w, r.h} {}
 
+	constexpr bool operator==(Rect const& other) const noexcept
+	{
+		return (p == other.p) && (s == other.s);
+	}
+
 	constexpr Rect(Point p_, Size s_, Alignment align) noexcept
 		: p{p_}, s{s_}
 	{
