@@ -30,7 +30,6 @@ target_include_directories(sdlpp
     PUBLIC 
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>    
-        SDL2_INCLUDE_DIRS
-        "${SDL2_INCLUDE_DIRS}/SDL2"
+        ${SDL2_INCLUDE_DIRS}
 )
 
