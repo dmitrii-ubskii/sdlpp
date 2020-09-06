@@ -72,10 +72,7 @@ struct Point
 		return {x, y};
 	}
 
-	constexpr bool operator==(Point const& other) const noexcept
-	{
-		return x == other.x && y == other.y;
-	}
+	constexpr bool operator==(Point const& other) const noexcept = default;
 
 	constexpr bool in(Rect r) const noexcept;
 };
@@ -115,10 +112,7 @@ struct Size
 	int w;
 	int h;
 
-	constexpr bool operator==(Size const& other) const noexcept
-	{
-		return w == other.w && h == other.h;
-	}
+	constexpr bool operator==(Size const& other) const noexcept = default;
 };
 
 struct OptionalSize
@@ -217,10 +211,7 @@ struct Rect
 	constexpr Rect(Point p_, Size s_) noexcept: p{p_}, s{s_} {}
 	constexpr Rect(SDL_Rect r) noexcept: p{r.x, r.y}, s{r.w, r.h} {}
 
-	constexpr bool operator==(Rect const& other) const noexcept
-	{
-		return (p == other.p) && (s == other.s);
-	}
+	constexpr bool operator==(Rect const& other) const noexcept = default;
 
 	constexpr Rect(Point p_, Size s_, Alignment align) noexcept
 		: p{p_}, s{s_}
