@@ -1,5 +1,5 @@
-#ifndef SDLPP_EVENTS_H__
-#define SDLPP_EVENTS_H__
+#ifndef SDLPP_EVENTS_H_
+#define SDLPP_EVENTS_H_
 
 #include <condition_variable>
 #include <cstdint>
@@ -270,4 +270,4 @@ class EventQueue
 };
 }
 
-#endif // SDLPP_EVENTS_H__
+#endif // SDLPP_EVENTS_H_

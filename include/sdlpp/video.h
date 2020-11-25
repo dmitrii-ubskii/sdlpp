@@ -1,5 +1,5 @@
-#ifndef SDLPP_VIDEO_H__
-#define SDLPP_VIDEO_H__
+#ifndef SDLPP_VIDEO_H_
+#define SDLPP_VIDEO_H_
 
 #include <string>
 
@@ -57,4 +57,4 @@ class Window
 };
 }
 
-#endif // SDLPP_VIDEO_H__
+#endif // SDLPP_VIDEO_H_

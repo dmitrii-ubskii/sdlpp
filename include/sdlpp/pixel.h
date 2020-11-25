@@ -1,5 +1,5 @@
-#ifndef SDLPP_PIXEL_H__
-#define SDLPP_PIXEL_H__
+#ifndef SDLPP_PIXEL_H_
+#define SDLPP_PIXEL_H_
 
 #include <SDL2/SDL.h>
 
@@ -54,4 +54,4 @@ constexpr Color const Color::Yellow = Color::RGB(0xFFFF00);
 constexpr Color const Color::White = Color::RGB(0xFFFFFF);
 }
 
-#endif // SDLPP_PIXEL_H__
+#endif // SDLPP_PIXEL_H_

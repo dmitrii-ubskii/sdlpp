@@ -1,5 +1,5 @@
-#ifndef SDLPP_GEOMETRY_H__
-#define SDLPP_GEOMETRY_H__
+#ifndef SDLPP_GEOMETRY_H_
+#define SDLPP_GEOMETRY_H_
 
 #include <algorithm>
 #include <optional>
@@ -270,4 +270,4 @@ constexpr bool Point::in(Rect r) const noexcept
 }
 }
 
-#endif // SDLPP_GEOMETRY_H__
+#endif // SDLPP_GEOMETRY_H_

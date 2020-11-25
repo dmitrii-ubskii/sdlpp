@@ -1,5 +1,5 @@
-#ifndef SDLPP_FONT_H__
-#define SDLPP_FONT_H__
+#ifndef SDLPP_FONT_H_
+#define SDLPP_FONT_H_
 
 #include <string>
 #include <unordered_map>
@@ -42,4 +42,4 @@ class Font
 };
 }
 
-#endif // SDLPP_FONT_H__
+#endif // SDLPP_FONT_H_

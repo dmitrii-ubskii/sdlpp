@@ -1,5 +1,5 @@
-#ifndef SDLPP_SURFACE_H__
-#define SDLPP_SURFACE_H__
+#ifndef SDLPP_SURFACE_H_
+#define SDLPP_SURFACE_H_
 
 #include <string>
 #include <mutex>
@@ -49,4 +49,4 @@ class Surface
 };
 }
 
-#endif // SDLPP_SURFACE_H__
+#endif // SDLPP_SURFACE_H_

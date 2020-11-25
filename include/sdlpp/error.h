@@ -1,5 +1,5 @@
-#ifndef SDLPP_ERROR_H__
-#define SDLPP_ERROR_H__
+#ifndef SDLPP_ERROR_H_
+#define SDLPP_ERROR_H_
 
 #include <stdexcept>
 
@@ -14,4 +14,4 @@ class Error: public std::runtime_error
 };
 }
 
-#endif // SDLPP_ERROR_H__
+#endif // SDLPP_ERROR_H_

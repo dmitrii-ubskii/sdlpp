@@ -1,5 +1,5 @@
-#ifndef SDLPP_SDL_H__
-#define SDLPP_SDL_H__
+#ifndef SDLPP_SDL_H_
+#define SDLPP_SDL_H_
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -43,4 +43,4 @@ struct Init
 };
 }
 
-#endif // SDLPP_SDL_H__
+#endif // SDLPP_SDL_H_
