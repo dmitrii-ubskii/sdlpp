@@ -13,6 +13,7 @@ struct Color;
 
 class Surface;
 
+// FIXME switch from SDL_TTF to another library
 class Font
 {
 	public:

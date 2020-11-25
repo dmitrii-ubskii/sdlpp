@@ -49,7 +49,7 @@ constexpr Alignment Alignment::BottomRight = {VerticalAlignment::Bottom, Horizon
 struct Point;
 struct Rect;
 
-struct Offset
+struct Vec2D
 {
 	int x;
 	int y;
@@ -67,45 +67,42 @@ struct Point
 		return {x, y};
 	}
 
-	explicit constexpr operator Offset() const noexcept
+	explicit constexpr operator Vec2D() const noexcept
 	{
 		return {x, y};
 	}
 
-	constexpr bool operator==(Point const& other) const noexcept
-	{
-		return x == other.x && y == other.y;
-	}
+	constexpr bool operator==(Point const& other) const noexcept = default;
 
 	constexpr bool in(Rect r) const noexcept;
 };
 
-constexpr Offset::operator Point() const noexcept
+constexpr Vec2D::operator Point() const noexcept
 {
 	return {x, y};
 }
 
-constexpr Offset operator-(Point lhs, Point rhs) noexcept
+constexpr Vec2D operator-(Point lhs, Point rhs) noexcept
 {
 	return {lhs.x - rhs.x, lhs.y - rhs.y};
 }
 
-constexpr Point operator-(Point lhs, Offset rhs) noexcept
+constexpr Point operator-(Point lhs, Vec2D rhs) noexcept
 {
 	return {lhs.x - rhs.x, lhs.y - rhs.y};
 }
 
-constexpr Point operator+(Point lhs, Offset rhs) noexcept
+constexpr Point operator+(Point lhs, Vec2D rhs) noexcept
 {
 	return {lhs.x + rhs.x, lhs.y + rhs.y};
 }
 
-constexpr Offset operator+(Offset lhs, Offset rhs) noexcept
+constexpr Vec2D operator+(Vec2D lhs, Vec2D rhs) noexcept
 {
 	return {lhs.x + rhs.x, lhs.y + rhs.y};
 }
 
-constexpr Point operator+(Offset lhs, Point rhs) noexcept
+constexpr Point operator+(Vec2D lhs, Point rhs) noexcept
 {
 	return rhs + lhs;
 }
@@ -115,10 +112,7 @@ struct Size
 	int w;
 	int h;
 
-	constexpr bool operator==(Size const& other) const noexcept
-	{
-		return w == other.w && h == other.h;
-	}
+	constexpr bool operator==(Size const& other) const noexcept = default;
 };
 
 struct OptionalSize
@@ -159,7 +153,27 @@ struct OptionalSize
 	}
 };
 
-constexpr SDL::OptionalSize min(SDL::OptionalSize s1, SDL::OptionalSize s2)
+constexpr Size min(Size s1, Size s2)
+{
+	return {std::min(s1.w, s2.w), std::min(s1.h, s2.h)};
+}
+
+constexpr Size max(Size s1, Size s2)
+{
+	return {std::max(s1.w, s2.w), std::max(s1.h, s2.h)};
+}
+
+constexpr Size operator+(Size s, Vec2D v)
+{
+	return {s.w + v.x, s.h + v.y};
+}
+
+constexpr Size operator-(Size s, Vec2D v)
+{
+	return {s.w - v.x, s.h - v.y};
+}
+
+constexpr OptionalSize min(OptionalSize s1, OptionalSize s2)
 {
 	auto minopt = [](auto a, auto b) -> std::optional<int>
 	{
@@ -176,7 +190,7 @@ constexpr SDL::OptionalSize min(SDL::OptionalSize s1, SDL::OptionalSize s2)
 	return {minopt(s1.w, s2.w), minopt(s1.h, s2.h)};
 }
 
-constexpr SDL::OptionalSize max(SDL::OptionalSize s1, SDL::OptionalSize s2)
+constexpr OptionalSize max(OptionalSize s1, OptionalSize s2)
 {
 	auto maxopt = [](auto a, auto b) -> std::optional<int>
 	{
@@ -196,6 +210,8 @@ struct Rect
 
 	constexpr Rect(Point p_, Size s_) noexcept: p{p_}, s{s_} {}
 	constexpr Rect(SDL_Rect r) noexcept: p{r.x, r.y}, s{r.w, r.h} {}
+
+	constexpr bool operator==(Rect const& other) const noexcept = default;
 
 	constexpr Rect(Point p_, Size s_, Alignment align) noexcept
 		: p{p_}, s{s_}
