@@ -33,3 +33,4 @@ target_include_directories(sdlpp
         ${SDL2_INCLUDE_DIRS}
 )
 
+target_link_libraries(sdlpp SDL2_image SDL2_mixer SDL2_ttf SDL2main SDL2)
