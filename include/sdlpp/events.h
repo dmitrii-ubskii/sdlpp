@@ -13,14 +13,40 @@
 
 namespace SDL
 {
-enum class MouseButton
-{
-	Left, Middle, Right, X1, X2
-};
-
 enum class ButtonState
 {
 	Pressed, Released
+};
+
+struct KeyboardEvent
+{
+	std::uint32_t windowId;
+	SDL_Keysym keysym;
+
+	ButtonState state;
+	bool isRepeat;
+
+	KeyboardEvent(SDL_KeyboardEvent ev) noexcept
+		: windowId{ev.windowID}
+		, keysym{ev.keysym}
+		, isRepeat{static_cast<bool>(ev.repeat)}
+	{
+		switch (ev.state)
+		{
+			case SDL_PRESSED:
+				state = ButtonState::Pressed;
+				break;
+
+			case SDL_RELEASED:
+				state = ButtonState::Released;
+				break;
+		}
+	}
+};
+
+enum class MouseButton
+{
+	Left, Middle, Right, X1, X2
 };
 
 struct MouseButtonEvent
@@ -75,6 +101,9 @@ struct MouseButtonEvent
 		}
 	}
 };
+
+struct QuitEvent
+{};
 
 enum class WindowEventType
 {
@@ -201,33 +230,49 @@ struct Event
 		auto timestamp = ev.common.timestamp;
 		switch (ev.type)
 		{
-			case SDL_WINDOWEVENT:
-					switch (ev.window.event)
-					{
-						case SDL_WINDOWEVENT_MOVED:
-							return {EventType::WindowMoved, timestamp, WindowMovedEvent{ev.window}};
-						case SDL_WINDOWEVENT_RESIZED:
-							return {EventType::WindowResized, timestamp, WindowResizedEvent{ev.window}};
-						default:
-							return {EventType::WindowEvent, timestamp, WindowEvent{ev.window}};
-					}
+			case SDL_KEYUP:
+				return {EventType::KeyUp, timestamp, KeyboardEvent{ev.key}};
+			case SDL_KEYDOWN:
+				return {EventType::KeyDown, timestamp, KeyboardEvent{ev.key}};
+
 			case SDL_MOUSEBUTTONUP:
 				return {EventType::MouseButtonUp, timestamp, MouseButtonEvent{ev.button}};
 			case SDL_MOUSEBUTTONDOWN:
 				return {EventType::MouseButtonDown, timestamp, MouseButtonEvent{ev.button}};
+
+			case SDL_QUIT:
+				return {EventType::Quit, timestamp, QuitEvent{}};
+
+			case SDL_WINDOWEVENT:
+				switch (ev.window.event)
+				{
+					case SDL_WINDOWEVENT_MOVED:
+						return {EventType::WindowMoved, timestamp, WindowMovedEvent{ev.window}};
+					case SDL_WINDOWEVENT_RESIZED:
+						return {EventType::WindowResized, timestamp, WindowResizedEvent{ev.window}};
+					default:
+						return {EventType::WindowEvent, timestamp, WindowEvent{ev.window}};
+				}
 			default:
-				return {EventType::NotImplemented, ev.common.timestamp, ev};
+				return {EventType::NotImplemented, timestamp, ev};
 		}
 	}
 
-	EventType tag;
+	KeyboardEvent key() const
+	{
+		return std::get<KeyboardEvent>(event);
+	}
+
+	EventType type;
 	std::uint32_t timestamp;
 
 	using EventVariant = std::variant<
-		WindowEvent,
-		WindowResizedEvent,
-		WindowMovedEvent,
+		KeyboardEvent,
 		MouseButtonEvent,
+		QuitEvent,
+		WindowEvent,
+		WindowMovedEvent,
+		WindowResizedEvent,
 		SDL_Event
 	>;
 	EventVariant event;
