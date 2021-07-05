@@ -236,6 +236,15 @@ struct Event
 class EventQueue
 {
 	public:
+		void pumpEvents()
+		{
+			SDL_Event ev;
+			while (SDL_PollEvent(&ev) != 0)
+			{
+				push(Event::fromSdlEvent(ev));
+			}
+		}
+
 		Event wait_pop()
 		{
 			std::unique_lock<std::mutex> pin{m};
