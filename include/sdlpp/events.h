@@ -263,6 +263,11 @@ struct Event
 		return std::get<KeyboardEvent>(event);
 	}
 
+	MouseButtonEvent mouseButton() const
+	{
+		return std::get<MouseButtonEvent>(event);
+	}
+
 	EventType type;
 	std::uint32_t timestamp;
 
