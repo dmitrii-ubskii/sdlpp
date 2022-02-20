@@ -1,5 +1,4 @@
-#ifndef SDLPP_FONT_H_
-#define SDLPP_FONT_H_
+#pragma once
 
 #include <string>
 #include <unordered_map>
@@ -42,5 +41,3 @@ class Font
 		mutable std::mutex mutex;
 };
 }
-
-#endif // SDLPP_FONT_H_

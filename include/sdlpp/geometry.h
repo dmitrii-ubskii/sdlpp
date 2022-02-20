@@ -1,5 +1,4 @@
-#ifndef SDLPP_GEOMETRY_H_
-#define SDLPP_GEOMETRY_H_
+#pragma once
 
 #include <algorithm>
 #include <optional>
@@ -285,5 +284,3 @@ constexpr bool Point::in(Rect r) const noexcept
 	return (dx >= 0) && (dx < r.s.w) && (dy >= 0) && (dy < r.s.h);
 }
 }
-
-#endif // SDLPP_GEOMETRY_H_

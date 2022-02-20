@@ -1,5 +1,4 @@
-#ifndef SDLPP_VIDEO_H_
-#define SDLPP_VIDEO_H_
+#pragma once
 
 #include <string>
 
@@ -56,5 +55,3 @@ class Window
 		Renderer renderer;
 };
 }
-
-#endif // SDLPP_VIDEO_H_

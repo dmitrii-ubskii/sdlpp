@@ -1,5 +1,4 @@
-#ifndef SDLPP_EVENTS_H_
-#define SDLPP_EVENTS_H_
+#pragma once
 
 #include <condition_variable>
 #include <cstdint>
@@ -328,5 +327,3 @@ class EventQueue
 		std::queue<Event> queue_;
 };
 }
-
-#endif // SDLPP_EVENTS_H_

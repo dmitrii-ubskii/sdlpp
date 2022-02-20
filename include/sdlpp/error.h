@@ -1,5 +1,4 @@
-#ifndef SDLPP_ERROR_H_
-#define SDLPP_ERROR_H_
+#pragma once
 
 #include <stdexcept>
 
@@ -13,5 +12,3 @@ class Error: public std::runtime_error
 		Error(std::string const& message) noexcept: std::runtime_error{message} {}
 };
 }
-
-#endif // SDLPP_ERROR_H_

@@ -1,5 +1,4 @@
-#ifndef SDLPP_PIXEL_H_
-#define SDLPP_PIXEL_H_
+#pragma once
 
 #include <SDL2/SDL.h>
 
@@ -53,5 +52,3 @@ constexpr Color const Color::Magenta = Color::RGB(0xFF00FF);
 constexpr Color const Color::Yellow = Color::RGB(0xFFFF00);
 constexpr Color const Color::White = Color::RGB(0xFFFFFF);
 }
-
-#endif // SDLPP_PIXEL_H_

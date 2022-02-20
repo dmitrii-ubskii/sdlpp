@@ -1,5 +1,4 @@
-#ifndef SDLPP_SURFACE_H_
-#define SDLPP_SURFACE_H_
+#pragma once
 
 #include <string>
 #include <mutex>
@@ -48,5 +47,3 @@ class Surface
 		mutable std::mutex mutex;
 };
 }
-
-#endif // SDLPP_SURFACE_H_
